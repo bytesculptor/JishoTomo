@@ -1,11 +1,13 @@
 package net.emojiparty.android.jishotomo.ui.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
@@ -26,6 +28,7 @@ public class DefinitionFragment extends Fragment {
   public static final String ENTRY_ID_EXTRA = "ENTRY_ID_EXTRA";
   public static final int ENTRY_EMPTY = -1;
   private AnalyticsLogger analyticsLogger;
+  private DefinitionActivity mActivity;
 
   public static DefinitionFragment instance(int entryId) {
     DefinitionFragment fragment = new DefinitionFragment();
@@ -45,6 +48,7 @@ public class DefinitionFragment extends Fragment {
     binding.setLifecycleOwner(activity);
     setupViewModel(getArguments(), binding);
     analyticsLogger = ((JishoTomoApp) activity.getApplication()).getAnalyticsLogger();
+    mActivity = (DefinitionActivity) getActivity();
     return root;
   }
 
@@ -62,6 +66,7 @@ public class DefinitionFragment extends Fragment {
           binding.setVariable(BR.presenter, entry);
           adapter.setItems(entry.getSenses());
           analyticsLogger.logViewItem(entry.entry.getId(), entry.getKanjiOrReading());
+          mActivity.currentWord = entry.getKanjiOrReading();
         }
       });
     } else {

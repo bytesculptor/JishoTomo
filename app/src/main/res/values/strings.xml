@@ -35,8 +35,11 @@
   <string name="export">Export to CSV</string>
   <string name="remove_all_favorites">Remove All Favorites</string>
   <string name="about">About</string>
+  <string name="read_it_to_me">read it to me</string>
+  <string name="tts_init_failed">Failed to init text-to-speech</string>
+  <string name="tts_package_missing">TTS language packages not installed</string>
 
-  <!-- Widget -->
+    <!-- Widget -->
   <string name="word_of_the_day">Word of the Day</string>
   <string name="configure">Select a JLPT Level</string>
   <string name="widget_explanation">The widget will display a random word from your selected JLPT level every 24 hours.</string>
