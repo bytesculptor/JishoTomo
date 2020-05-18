@@ -20,10 +20,9 @@ import static net.emojiparty.android.jishotomo.ui.activities.DefinitionFragment.
 
 public class DefinitionActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    private TextToSpeech tts;
     private static final int REQUEST_CHECK_TTS_DATA = 10;
     public String currentWord;
-
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

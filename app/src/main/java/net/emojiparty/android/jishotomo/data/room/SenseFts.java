@@ -7,14 +7,14 @@ import androidx.room.Fts4;
 @Fts4(contentEntity = Sense.class)
 @Entity(tableName = "sensesFts")
 public class SenseFts {
-  @NonNull
-  private String glosses;
+    @NonNull
+    private String glosses;
 
-  public SenseFts(String glosses) {
-    this.glosses = glosses;
-  }
+    public SenseFts(String glosses) {
+        this.glosses = glosses;
+    }
 
-  public String getGlosses() {
-    return glosses;
-  }
+    public String getGlosses() {
+        return glosses;
+    }
 }

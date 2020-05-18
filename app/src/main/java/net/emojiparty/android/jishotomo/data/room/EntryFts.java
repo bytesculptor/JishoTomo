@@ -8,40 +8,41 @@ import androidx.room.Fts4;
 @Fts4(contentEntity = Entry.class)
 @Entity(tableName = "entriesFts")
 public class EntryFts {
-  @ColumnInfo(name = "primary_kanji")
-  private String primaryKanji;
+    @ColumnInfo(name = "primary_kanji")
+    private String primaryKanji;
 
-  @NonNull
-  @ColumnInfo(name = "primary_reading")
-  private String primaryReading;
+    @NonNull
+    @ColumnInfo(name = "primary_reading")
+    private String primaryReading;
 
-  @ColumnInfo(name = "other_kanji")
-  private String otherKanji;
+    @ColumnInfo(name = "other_kanji")
+    private String otherKanji;
 
-  @ColumnInfo(name = "other_readings")
-  private String otherReadings;
+    @ColumnInfo(name = "other_readings")
+    private String otherReadings;
 
-  public EntryFts(String primaryKanji, @NonNull String primaryReading, String otherKanji,
-      String otherReadings) {
-    this.primaryKanji = primaryKanji;
-    this.primaryReading = primaryReading;
-    this.otherKanji = otherKanji;
-    this.otherReadings = otherReadings;
-  }
+    public EntryFts(String primaryKanji, @NonNull String primaryReading, String otherKanji,
+                    String otherReadings) {
+        this.primaryKanji = primaryKanji;
+        this.primaryReading = primaryReading;
+        this.otherKanji = otherKanji;
+        this.otherReadings = otherReadings;
+    }
 
-  public String getPrimaryKanji() {
-    return primaryKanji;
-  }
+    public String getPrimaryKanji() {
+        return primaryKanji;
+    }
 
-  @NonNull public String getPrimaryReading() {
-    return primaryReading;
-  }
+    @NonNull
+    public String getPrimaryReading() {
+        return primaryReading;
+    }
 
-  public String getOtherKanji() {
-    return otherKanji;
-  }
+    public String getOtherKanji() {
+        return otherKanji;
+    }
 
-  public String getOtherReadings() {
-    return otherReadings;
-  }
+    public String getOtherReadings() {
+        return otherReadings;
+    }
 }

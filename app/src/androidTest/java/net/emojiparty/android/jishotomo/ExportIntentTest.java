@@ -3,12 +3,15 @@ package net.emojiparty.android.jishotomo;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
+
 import androidx.arch.core.executor.testing.CountingTaskExecutorRule;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+
 import net.emojiparty.android.jishotomo.data.AppRepository;
 import net.emojiparty.android.jishotomo.ui.activities.DrawerActivity;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -30,50 +33,50 @@ import static net.emojiparty.android.jishotomo.utils.JishoTomoTestUtils.clickDra
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ExportIntentTest {
-  @Rule
-  public CountingTaskExecutorRule mCountingTaskExecutorRule = new CountingTaskExecutorRule();
+    @Rule
+    public CountingTaskExecutorRule mCountingTaskExecutorRule = new CountingTaskExecutorRule();
 
-  @Rule
-  public IntentsTestRule<DrawerActivity> intentsTestRule =
-      new IntentsTestRule<>(DrawerActivity.class);
+    @Rule
+    public IntentsTestRule<DrawerActivity> intentsTestRule =
+            new IntentsTestRule<>(DrawerActivity.class);
 
-  @Before
-  public void stubIntent() {
-    // Stub the Intent.
-    intending(hasAction(Intent.ACTION_CHOOSER)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
-  }
+    @Before
+    public void stubIntent() {
+        // Stub the Intent.
+        intending(hasAction(Intent.ACTION_CHOOSER)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
+    }
 
-  @Before
-  public void checkAppLoaded() {
-    new AppRepository().unfavoriteAll();
-    onView(withText("Jisho Tomo")).check(matches(isDisplayed()));
-  }
+    @Before
+    public void checkAppLoaded() {
+        new AppRepository().unfavoriteAll();
+        onView(withText("Jisho Tomo")).check(matches(isDisplayed()));
+    }
 
-  @After
-  public void cleanup() {
-    new AppRepository().unfavoriteAll();
-  }
+    @After
+    public void cleanup() {
+        new AppRepository().unfavoriteAll();
+    }
 
-  @Test
-  public void itCanExportFavoritesToCsv() {
-    addFavoriteEntry("七転び八起き");
-    clickDrawerItem(R.id.nav_favorites);
-    onView(withText("七転び八起き")).check(matches(isDisplayed()));
-    onView(withId(R.id.menu_export)).perform(click());
-    onView(withText("PROCEED"))
-        .inRoot(isDialog())
-        .check(matches(isDisplayed()));
-    onView(withText("PROCEED")).perform(click());
-  }
+    @Test
+    public void itCanExportFavoritesToCsv() {
+        addFavoriteEntry("七転び八起き");
+        clickDrawerItem(R.id.nav_favorites);
+        onView(withText("七転び八起き")).check(matches(isDisplayed()));
+        onView(withId(R.id.menu_export)).perform(click());
+        onView(withText("PROCEED"))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()));
+        onView(withText("PROCEED")).perform(click());
+    }
 
-  @Test
-  public void itCanExportJlptListToCsv() {
-    clickDrawerItem(R.id.nav_jlptn1);
-    onView(withText("明白")).check(matches(isDisplayed()));
-    onView(withId(R.id.menu_export)).perform(click());
-    onView(withText("PROCEED"))
-        .inRoot(isDialog())
-        .check(matches(isDisplayed()));
-    onView(withText("PROCEED")).perform(click());
-  }
+    @Test
+    public void itCanExportJlptListToCsv() {
+        clickDrawerItem(R.id.nav_jlptn1);
+        onView(withText("明白")).check(matches(isDisplayed()));
+        onView(withId(R.id.menu_export)).perform(click());
+        onView(withText("PROCEED"))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()));
+        onView(withText("PROCEED")).perform(click());
+    }
 }
